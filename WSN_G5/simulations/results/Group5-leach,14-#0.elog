@@ -1,0 +1,16 @@
+SB ov 1539 ev 2 rid Group5-0-20251130-02:01:56-86990
+
+S f 54 # -1 t -1
+MF id 1 c omnetpp::cModule t WsnNetwork n WsnNetwork cm 1 # 4294967297 ei 0
+MDF id 1 d bgb=600,600 # 4294967296 ei 0
+MF id 2 c inet::physicallayer::RadioMedium t inet.physicallayer.wireless.ieee802154.packetlevel.Ieee802154NarrowbandScalarRadioMedium pid 1 n radioMedium # 4294967297 ei 0
+MDF id 2 d p=50,50;i=misc/sun # 4294967296 ei 0
+MF id 3 c omnetpp::cModule t inet.visualizer.common.IntegratedVisualizer pid 1 n visualizer cm 1 # 4294967297 ei 0
+MDF id 3 d p=500,50;i=block/app # 4294967296 ei 0
+MF id 4 c omnetpp::cModule t BaseStation pid 1 n baseStation cm 1 # 4294967297 ei 0
+MDF id 4 d p=300,300;i=device/antennatower;is=l # 4294967296 ei 0
+MF id 5 c omnetpp::cModule t SensorNode pid 1 n node[0] cm 1 # 4294967297 ei 0
+GF m 5 g 0 n radioIn o 0 # 4294967297 ei 0
+MDF id 5 d p=100,100;i=misc/sensor2;r=,,#707070 # 4294967296 ei 0
+
+SE e 0 c -1 m ""
