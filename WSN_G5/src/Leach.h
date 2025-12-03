@@ -2,7 +2,7 @@
 #define __LEACH_H_
 
 #include <omnetpp.h>
-#include <vector>
+#include <vector> // Required for std::vector
 #include "inet/common/packet/Packet.h"
 #include "inet/power/contract/IEpEnergyStorage.h"
 #include "NetworkPacket_m.h"
@@ -19,16 +19,23 @@ class Leach : public cSimpleModule {
     int currentRound = 0;
     bool isClusterHead = false;
     int myClusterHeadId = -1;
+
     cMessage *roundTimer = nullptr;
     inet::power::IEpEnergyStorage *energyStorage = nullptr;
+
+    // Statistics
     simsignal_t packetReceivedSignal;
     simsignal_t endToEndDelaySignal;
+
+    // --- FIX: Added this missing variable ---
+    std::vector<int> clusterMembers;
+    // ----------------------------------------
 
   protected:
     virtual void initialize() override;
     virtual void handleMessage(cMessage *msg) override;
 
-    // Helper for MAC Tagging
+    // Helper for MAC/Protocol Tagging
     void sendDown(inet::Packet *pkt);
 
     void startNewRound();

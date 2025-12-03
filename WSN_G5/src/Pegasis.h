@@ -15,7 +15,10 @@ class Pegasis : public cSimpleModule {
     bool isLeader = false;
     double radioTx_mA;
     double radioRx_mA;
+
     inet::power::IEpEnergyStorage *energyStorage = nullptr;
+
+    // Statistics
     simsignal_t packetReceivedSignal;
     simsignal_t endToEndDelaySignal;
 
@@ -23,7 +26,7 @@ class Pegasis : public cSimpleModule {
     virtual void initialize() override;
     virtual void handleMessage(cMessage *msg) override;
 
-    // Helper for MAC tagging
+    // Helper for MAC/Protocol Tagging
     void sendDown(inet::Packet *pkt);
 
     void buildChain();
