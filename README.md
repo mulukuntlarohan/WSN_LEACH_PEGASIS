@@ -1,84 +1,92 @@
-SYSTEM REQUIREMENTS
-------------------------------------------------------------------------
-Operating Systems Used: macOS and Linux
-OMNeT++ Version: OMNeT++ 6.3.0
-INET Framework: INET 4.5
-------------------------------------------------------------------------
-3. PREREQUISITES & INSTALLATION
-------------------------------------------------------------------------
-Before importing the project, ensure OMNeT++ and INET are installed.
-A. Installing OMNeT++
-1. Open your terminal.
-2. Navigate to the path where you extracted the OMNeT++ source code.
-3. Set up the environment variables:
-- For macOS: Type `source setenv`
-- For Linux: Type `source .setenv`
-4. Configure the build:
-- Type `./configure`
-5. Compile OMNeT++:
-- Type `make` (This may take some time).
-6. Launch the IDE:
-- Type `omnetpp`
-B. Installing INET Framework (If not already installed)
-1. inside the OMNeT++ IDE, go to the Header Menu.
-2. Click "Help" -> "Install Simulation Models".
-3. Select "INET Framework" (ensure version 4.5 is selected) and click "Install".
-4. Wait for the installation and indexing to complete.
-------------------------------------------------------------------------
-4. IMPORTING AND CONFIGURING THE PROJECT
+# IslanderNet: WSN Protocol Comparison (LEACH vs PEGASIS)
+**Course:** COSC6357  
+**Project Group:** G5  
 
-------------------------------------------------------------------------
-1. Unzip the file `COSC6357_G5_IslanderNet_Project.zip` to a known location.
-2. In the OMNeT++ IDE, go to "File" -> "Import".
-3. Select "General" -> "Existing Projects into Workspace" and click "Next".
-4. Browse to the unzipped folder, select the project, and click "Finish".
-5. Verifying Project Settings:
-- Right-click the project folder (WSN_G5) -> "Properties".
-- Go to "Project References": Ensure `inet4.5` is checked.
-- Go to "OMNeT++": Ensure "OMNeT++ Nature" is enabled.
-- Click "Apply and Close".
-------------------------------------------------------------------------
-5. BUILDING AND RUNNING THE SIMULATION
-------------------------------------------------------------------------
-1. Build the Project:
-- Right-click on the project folder `WSN_G5`.
-- Select "Clean Project".
-- Once cleaned, right-click again and select "Build Project".
-- Ensure the build completes with "0 Errors".
-2. Run the Simulation:
-- Navigate to the `simulations` folder in the Project Explorer.
-- Locate `config_G5.ini`.
-- Right-click `config_G5.ini` -> "Run As" -> "OMNeT++ Simulation".
-3. Selecting the Run Configuration:
-- A dialog box will appear showing available configurations.
-- Select: `Config Group5 -- Clustered(2 clusters,18); LEACH vs PEGASIS`.
-- You will see a list of numbered runs (0 to 23) with different protocols and energy levels.
-- Examples to test:
-* Run #15: ($0="Pegasis", $1=18, $repetition=0)
-* Run #10: ($0="Leach", $1=26, $repetition=1)
-- Click "OK" to start.
-4. Viewing Results:
-- The Qtenv simulation window will open. You can press the "Fast Forward" (double arrow)
-button to speed up the simulation.
-- Once the simulation finishes (1800s), scalar (.sca) and vector (.vec) files will be generated in
-the `results` folder.
-------------------------------------------------------------------------
-6. KNOWN ISSUES AND DEVIATIONS
-------------------------------------------------------------------------
-1. Environment Setup:
-- We encountered path conflicts between the system Python, Homebrew Python, and
-Anaconda environments on macOS during the initial OMNeT++ setup (`./configure`). We
-resolved this by ensuring the correct Python path was referenced in `configure.user` or by
-temporarily deactivating Conda environments.
-2. INET Linking:
-- Initial issues occurred where the project could not find INET modules. This was resolved by
-re-verifying the "Project References" and rebuilding the project index.
-3. Energy Model Configuration:
-- Issue: In initial tests, sensor nodes drained their battery completely within 300 seconds using
-standard radio parameters.
+This project implements and compares the **LEACH** and **PEGASIS** protocols within a Wireless Sensor Network (WSN) using OMNeT++ and the INET Framework.
 
-- Resolution: We modified `config_G5.ini` to decouple physical transmission power from
-energy consumption. We enabled a low-power "sleep" state (0.18mW) for the idle mode and
-adjusted transmission/reception parameters. This allows the simulation to run the full 30 minutes
-while maintaining realistic signal propagation (100mW physical transmission power to reach the
-Base Station).
+
+---
+
+## 📊 Project Results
+Detailed simulation results, scalar/vector analysis, and performance graphs can be found in the official report:
+
+👉 **[View Simulation Results PDF][WSN.pdf](https://github.com/user-attachments/files/26194415/WSN.pdf)** 
+*(Note: Ensure your PDF is named 'Simulation_Results.pdf' and is uploaded to the root of this repository)*
+
+---
+
+## 💻 System Requirements
+*   **Operating Systems:** macOS / Linux
+*   **OMNeT++ Version:** 6.3.0
+*   **INET Framework:** 4.5
+
+---
+
+## ⚙️ Prerequisites & Installation
+
+### A. Installing OMNeT++
+1. Open your terminal and navigate to the extracted OMNeT++ source code.
+2. Set up environment variables:
+   *   **macOS:** `source setenv`
+   *   **Linux:** `source .setenv`
+3. Configure the build: `./configure`
+4. Compile: `make` (This may take some time)
+5. Launch the IDE: `omnetpp`
+
+### B. Installing INET Framework
+1. Inside the OMNeT++ IDE, go to **Help** -> **Install Simulation Models**.
+2. Select **INET Framework (v4.5)** and click **Install**.
+3. Wait for installation and indexing to complete.
+
+---
+
+## 📥 Importing and Configuring
+
+1. Unzip `COSC6357_G5_IslanderNet_Project.zip`.
+2. In OMNeT++ IDE, go to **File** -> **Import**.
+3. Select **General** -> **Existing Projects into Workspace** -> **Next**.
+4. Browse to the unzipped folder and click **Finish**.
+5. **Verify Settings:**
+   *   Right-click the project folder (`WSN_G5`) -> **Properties**.
+   *   **Project References:** Ensure `inet4.5` is checked.
+   *   **OMNeT++:** Ensure "OMNeT++ Nature" is enabled.
+
+---
+
+## 🚀 Building and Running
+
+### 1. Build the Project
+*   Right-click `WSN_G5` -> **Clean Project**.
+*   Right-click again -> **Build Project**. (Ensure 0 errors).
+
+### 2. Run the Simulation
+*   Navigate to the `simulations` folder.
+*   Right-click `config_G5.ini` -> **Run As** -> **OMNeT++ Simulation**.
+
+### 3. Selection Configuration
+Select: `Config Group5 -- Clustered(2 clusters, 18); LEACH vs PEGASIS`.
+Choose a specific run (0-23). Examples:
+*   **Run #15:** (Pegasis, 18 nodes, repetition 0)
+*   **Run #10:** (Leach, 26 nodes, repetition 1)
+
+---
+
+## 🛠 Known Issues and Deviations
+
+### 1. Environment Setup (macOS)
+We encountered path conflicts between system Python, Homebrew, and Anaconda during `./configure`. 
+**Resolution:** Referenced the correct Python path in `configure.user` and temporarily deactivated Conda environments.
+
+### 2. INET Linking
+Project occasionally failed to find INET modules.
+**Resolution:** Re-verified **Project References** and rebuilt the project index.
+
+### 3. Energy Model Configuration
+*   **Issue:** Nodes drained battery within 300s using standard parameters.
+*   **Resolution:** Modified `config_G5.ini` to decouple physical transmission power from energy consumption. We enabled a low-power **sleep state (0.18mW)** and adjusted parameters to allow a full 30-minute simulation while maintaining realistic 100mW signal propagation.
+
+---
+
+## ✉️ Contact
+For questions regarding the simulation or configuration:
+**Rohan Mulukuntla** - [rmulukuntla@islander.tamucc.edu](mailto:rmulukuntla@islander.tamucc.edu)
