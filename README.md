@@ -1,17 +1,16 @@
-# IslanderNet: WSN Protocol Comparison (LEACH vs PEGASIS)
-**Course:** COSC6357  
-**Project Group:** G5  
+# IslanderNet: WSN Protocol Comparison (LEACH vs PEGASIS) 
+**Technologies:** OMNeT++ 6.3.0, INET 4.5, C++
 
-This project implements and compares the **LEACH** and **PEGASIS** protocols within a Wireless Sensor Network (WSN) using OMNeT++ and the INET Framework.
-
+This project evaluates and compares the performance of **LEACH** (Low-Energy Adaptive Clustering Hierarchy) and **PEGASIS** (Power-Efficient Gathering in Sensor Information Systems) protocols in a Wireless Sensor Network environment.
 
 ---
 
-## 📊 Project Results
-Detailed simulation results, scalar/vector analysis, and performance graphs can be found in the official report:
+## 📊 Simulation Analysis & Results
+The complete technical report, including performance metrics, energy consumption analysis, and protocol comparisons, is available below:
 
-👉 **[View Simulation Results PDF][WSN.pdf](https://github.com/user-attachments/files/26194415/WSN.pdf)** 
-*(Note: Ensure your PDF is named 'Simulation_Results.pdf' and is uploaded to the root of this repository)*
+### [👉 Click Here to View Full Results (PDF)](https://github.com/user-attachments/files/26194415/WSN.pdf)
+
+> **Note:** The report covers scalar/vector analysis from 24 different simulation runs, focusing on network longevity and data propagation efficiency.
 
 ---
 
@@ -46,7 +45,7 @@ Detailed simulation results, scalar/vector analysis, and performance graphs can 
 2. In OMNeT++ IDE, go to **File** -> **Import**.
 3. Select **General** -> **Existing Projects into Workspace** -> **Next**.
 4. Browse to the unzipped folder and click **Finish**.
-5. **Verify Settings:**
+5. **Verify Project Settings:**
    *   Right-click the project folder (`WSN_G5`) -> **Properties**.
    *   **Project References:** Ensure `inet4.5` is checked.
    *   **OMNeT++:** Ensure "OMNeT++ Nature" is enabled.
@@ -65,28 +64,20 @@ Detailed simulation results, scalar/vector analysis, and performance graphs can 
 
 ### 3. Selection Configuration
 Select: `Config Group5 -- Clustered(2 clusters, 18); LEACH vs PEGASIS`.
-Choose a specific run (0-23). Examples:
-*   **Run #15:** (Pegasis, 18 nodes, repetition 0)
-*   **Run #10:** (Leach, 26 nodes, repetition 1)
+Example test runs:
+*   **Run #15:** ($0="Pegasis", $1=18, $repetition=0)
+*   **Run #10:** ($0="Leach", $1=26, $repetition=1)
 
 ---
 
 ## 🛠 Known Issues and Deviations
 
-### 1. Environment Setup (macOS)
-We encountered path conflicts between system Python, Homebrew, and Anaconda during `./configure`. 
-**Resolution:** Referenced the correct Python path in `configure.user` and temporarily deactivated Conda environments.
-
-### 2. INET Linking
-Project occasionally failed to find INET modules.
-**Resolution:** Re-verified **Project References** and rebuilt the project index.
-
-### 3. Energy Model Configuration
-*   **Issue:** Nodes drained battery within 300s using standard parameters.
-*   **Resolution:** Modified `config_G5.ini` to decouple physical transmission power from energy consumption. We enabled a low-power **sleep state (0.18mW)** and adjusted parameters to allow a full 30-minute simulation while maintaining realistic 100mW signal propagation.
+*   **macOS Path Conflicts:** Resolved Python path conflicts (System vs Homebrew vs Conda) by referencing the correct path in `configure.user`.
+*   **INET Linking:** If modules are missing, re-verify "Project References" and rebuild the index.
+*   **Energy Optimization:** Modified `config_G5.ini` to include a low-power **sleep state (0.18mW)**. This allows the simulation to run for the full 1800s while maintaining realistic signal propagation (100mW).
 
 ---
 
-## ✉️ Contact
-For questions regarding the simulation or configuration:
-**Rohan Mulukuntla** - [rmulukuntla@islander.tamucc.edu](mailto:rmulukuntla@islander.tamucc.edu)
+## 📬 Contact
+**Rohan Mulukuntla**  
+[rmulukuntla@islander.tamucc.edu](mailto:rmulukuntla@islander.tamucc.edu)  
